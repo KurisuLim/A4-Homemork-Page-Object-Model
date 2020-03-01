@@ -1,7 +1,7 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,13 +15,13 @@ public class BasePage {
     }
 
 
-    public void waitVisibility(By element){
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(element));
+    public void waitVisibility(WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitElementVisibilityAndClick(By element){
+    public void waitElementVisibilityAndClick(WebElement element){
         waitVisibility(element);
-        driver.findElement(element).click();
+        element.click();
     }
 
     public void waitForUrlChange(String url){

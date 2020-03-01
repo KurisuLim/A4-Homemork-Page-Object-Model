@@ -1,43 +1,49 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver){
         super(driver);
-        //Will enable on the next homework
-        //AjaxElementLocatorFactory PageFactory = new AjaxElementLocatorFactory(driver, 10);
-        //org.openqa.selenium.support.PageFactory.initElements(driver, this);
+        //homework 2
+        AjaxElementLocatorFactory PageFactory = new AjaxElementLocatorFactory(driver, 10);
+        org.openqa.selenium.support.PageFactory.initElements(driver, this);
     }
-
-    protected By email = By.name("email");
-    protected By password = By.name("password");
-    protected By loginBtn = By.tagName("button");
-    protected By titleText = By.tagName("h5");
-    protected By errorText = By.className("help-block");
-
+    //Solution for homework 2
+    @FindBy(name = "email")
+    protected WebElement email;
+    @FindBy(name = "password")
+    protected WebElement password;
+    @FindBy(tagName = "button")
+    protected WebElement loginBtn;
+    @FindBy(tagName = "h5")
+    protected WebElement titleText;
+    @FindBy(className = "help-block")
+    protected WebElement errorText;
 
 
     public void setEmail(String strEmail){
-        driver.findElement(email).sendKeys(strEmail);
+        email.sendKeys(strEmail);
     }
 
     public void setPassword(String strPassword){
-        driver.findElement(password).sendKeys(strPassword);
+        password.sendKeys(strPassword);
     }
 
     public void clickLogin(){
-        waitElementVisibilityAndClick(loginBtn);
+        loginBtn.click();
     }
 
     public String getLoginTitle(){
-        return driver.findElement(titleText).getText();
+        return titleText.getText();
     }
 
     public boolean isErrorVisible(){
-        return driver.findElement(errorText).isDisplayed();
+        return errorText.isDisplayed();
     }
 
 
