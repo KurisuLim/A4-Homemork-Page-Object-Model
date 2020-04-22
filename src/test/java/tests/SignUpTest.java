@@ -17,8 +17,7 @@ public class SignUpTest extends BaseTest {
         base = new BasePage(driver);
         home = new HomePage(driver);
         page = new SignupPage(driver);
-        home.openHomePage()
-                .toSignUpPage();
+        home.toSignUpPage();
         String expected = "Kwidos";
         String actual = driver.getTitle();
         Assert.assertEquals(actual, expected);
@@ -43,7 +42,7 @@ public class SignUpTest extends BaseTest {
     @Test
     public void validSignUp(){
         page.validSignUp();
-        Assert.assertTrue(driver.findElement(page.alert).isDisplayed());
+        Assert.assertTrue(page.alert.isDisplayed());
         System.out.println("Valid Signup Success");
     }
 

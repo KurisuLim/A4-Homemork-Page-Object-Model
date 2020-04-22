@@ -17,8 +17,7 @@ public class LoginTest extends BaseTest {
         base = new BasePage(driver);
         home = new HomePage(driver);
         page = new LoginPage(driver);
-        home.openHomePage()
-                .toLoginPage();
+        home.toLoginPage();
         String expected = "Kwidos";
         String actual = driver.getTitle();
         Assert.assertEquals(actual, expected);

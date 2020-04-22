@@ -1,29 +1,34 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
-public class HomePage extends BasePage{
-
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
+public class HomePage extends BasePage {
 
     protected static String BASE_URL = "https://testkwidos.tk/" ;
 
-    //Solution for Homework 1
-    By loginButton = By.cssSelector("ul.user.nav");
-    By signUpButton = By.cssSelector("div.guest-home label.wr-register-type__btn");
-
-    public HomePage openHomePage(){
+    public HomePage(WebDriver driver) {
+        super(driver);
+        //homework 2
+        AjaxElementLocatorFactory PageFactory = new AjaxElementLocatorFactory(driver, 10);
+        org.openqa.selenium.support.PageFactory.initElements(driver, this);
         driver.get(BASE_URL);
-        return this;
+
     }
 
+
+
+    //Solution for Homework 2
+    @FindBy(css = "ul.user.nav")
+     protected WebElement loginButton;
+    @FindBy(css = "div.guest-home label.wr-register-type__btn")
+     WebElement signUpButton;
+
     // navigates to login page
-    public LoginPage toLoginPage(){
-        waitElementVisibilityAndClick(loginButton);
-        return new LoginPage(driver);
+    public void toLoginPage(){
+        loginButton.click();
     }
 
     //navigate to signup page
